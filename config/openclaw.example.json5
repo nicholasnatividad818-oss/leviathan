@@ -1,0 +1,29 @@
+{
+  // Copy to ~/.openclaw/openclaw.json and edit paths.
+  // Ollama: NO /v1 on baseUrl. That path breaks tool calls.
+  models: {
+    mode: "merge",
+    providers: {
+      ollama: {
+        baseUrl: "http://127.0.0.1:11434",
+        apiKey: "ollama-local",
+        api: "ollama",
+        timeoutSeconds: 300,
+        models: [
+          {
+            id: "qwen3.6",
+            name: "Qwen3.6 local",
+            contextTokens: 65536,
+            params: { num_ctx: 65536 },
+          },
+        ],
+      },
+    },
+  },
+  agents: {
+    defaults: {
+      model: { primary: "ollama/qwen3.6" },
+      workspace: "./" ,
+    },
+  },
+}
